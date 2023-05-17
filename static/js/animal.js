@@ -18,30 +18,28 @@ $(document).ready(function () {
     formData.append("name_give", name);
     formData.append("comment_give", comment);
 
-    fetch('/guestbook', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+    fetch('/animal', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
       alert(data["msg"]);
       window.location.reload();
     });
   }
   function show_comment() {
-    fetch('/guestbook').then((res) => res.json()).then((data) => {
+    fetch('/animal').then((res) => res.json()).then((data) => {
       let rows = data['result']
       $("#comment-list").empty()
       rows.forEach((a) => {
         let name = a['name']
         let comment = a['comment']
 
-        let temp_html = `<div class="card">
+        let temp_html = `<div class="card card-comment">
                           <div class="card-body">
-                              <blockquote class="blockquote mb-0">
-                                  <p>${comment}</p>
-                                  <footer class="blockquote-footer float-end">${name}</footer>
-                                  <button onclick="delete_comment()" type="button" class="btn btn-danger float-end">
-                                    Delete
-                                  </button>
-                              </blockquote>
+                            <img src="${url}" class="img-thumbnail img-fluid w-25 float-start mx-3" alt="...">
+                            <blockquote class="blockquote mb-0">
+                              <p class="card-text text-start comment">${comment}</p>
+                              <footer class="blockquote-footer float-end px-3">${name}</footer>
+                            </blockquote>
                           </div>
-                      </div>`
+                        </div>`
         $("#comment-list").append(temp_html)
       })
     })

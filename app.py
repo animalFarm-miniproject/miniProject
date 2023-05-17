@@ -12,10 +12,6 @@ db = client.dbsparta
 def home():
    return render_template('index.html')
 
-@app.route('/animal')
-def animal():
-   return render_template('animal.html')
-
 @app.route("/member", methods=["GET"])
 def member_get():
     all_member = list(db.member.find({}))
