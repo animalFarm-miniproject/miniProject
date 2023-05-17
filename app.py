@@ -17,16 +17,25 @@ def member_get():
     all_member = list(db.member.find({}))
     for i in all_member:
         i['_id'] = str(i['_id'])
-    all_comments = list(db.comment.find({}))
-    for i in all_comments:
-        i['_id'] = str(i['_id'])
-    return jsonify({'result': all_member, 'comments' : all_comments})
+    return jsonify({'result': all_member})
 
 @app.route('/detail')
 def detail():
     ns = request.args.get('namespace', default = 'ns-abc-aaa', type = str)
     print(ns)
-    return render_template('member.html', ns=ns)
+    all_member = list(db.member.find({}))
+    for i in all_member:
+        i['_id'] = str(i['_id'])
+        if i['_id'] == ns:
+            member = i
+            break
+    all_comments = list(db.comment.find({}))
+    comment = list()
+    for i in all_comments:
+        i['_id'] = str(i['_id'])
+        if i['id'] == ns:
+            comment.append(i)
+    return render_template('member.html', ns=member, comment=comment)
 
 @app.route("/comment", methods=["POST"])
 def comment_post():
