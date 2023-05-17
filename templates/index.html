@@ -8,8 +8,8 @@
     <!-- ogtag -->
     <meta property="og:title" content="Team.동물농장" />
     <meta property="og:description" content="3팀 팀원소개" />
-    <!-- 미리보기 사진 뭐넣지 -->
     <meta property="og:image" content="" />
+    <!-- 미리보기 사진 뭐넣지 -->
     <title>Team.동물농장 | 멤버소개</title>
     <!-- 바로가기ico -->
     <link rel="shortcut icon" href="/static/src/logo.png">
@@ -25,117 +25,90 @@
     <!-- CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <!-- JS -->
-    <script>
-        $(document).ready(function () {
-            show_member();
-        });
-        function show_member() {
-            fetch('/member').then((res) => res.json()).then((data) => {
-                let rows = data['result']
-                $('#mem').empty()
-                rows.forEach((a) => {
-                    let name = a['name'];
-                    let team = a['team'];
-                    let ids = a["_id"];
-                    let url = "/detail?namespace=" + encodeURIComponent(ids);
-                    let temp_html = `<section class="col-sm-12 col-lg-6 my-3">
-                                        <img src="../static/src/people2_icon.png" alt="이름아이콘">
-                                        <h3 class="fs-2">${name}</h3>
-                                        <p class="fs-6 p-lg-3">${team}의 <br>소개 페이지<br>입니다.</p>
-                                        <a href="${url}" target="_blank" class="intro_mem" alt="팀원소개 상세페이지" title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
-                                    </section>`
-                    $('#mem').append(temp_html)
-                })
-            })
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" > </script>
 </head>
 
 <body>
-
-    <body>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a href="http://127.0.0.1:5000"><img src="../static/src/logo.png" alt="teamLogo" title="3팀로고"
-                        width="30px">가짜로고</a>
-                <button class="navbar-toggler text-end border-0" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse text-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item px-5 ">
-                            <a class="nav-link" target="_blank"
-                                href="https://github.com/letsgo-nation/Team_intro">GitHub</a>
-                        </li>
-                        <li class="nav-item px-5">
-                            <a class="nav-link" href="http://127.0.0.1:5000/ani">Board</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="http://127.0.0.1:5000"><img src="../static/src/logo.png" alt="teamLogo" title="3팀로고"
+                    width="30px"></a>
+            <button class="navbar-toggler text-end border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item px-5 ">
+                        <a class="nav-link" target="_blank"
+                            href="https://github.com/letsgo-nation/Team_intro">GitHub</a>
+                    </li>
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="http://127.0.0.1:5000/animal">Board</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <header>
-            <div class="heading">
-                <h1 class="fs-1 fw-bold pb-1">TEAM.동물농장<br></h1>
-                <hr class="line rounded">
-                <h3 class="fs-5 pt-1 pb-5">동물을 사랑하는<br class="visually-hidden sm-none"> 팀원들의 코딩 이야기</h3>
-                <h2 class="subtitle fs-6 p-2">PROJECT. 빨리 친해지길 바래</h2>
-            </div>
-        </header>
+    <header>
+        <div class="heading">
+            <h1 class="fs-1 fw-bold pb-1">TEAM.동물농장<br></h1>
+            <hr class="line rounded">
+            <h3 class="fs-5 pt-1 pb-5">동물을 사랑하는<br class="visually-hidden sm-none"> 팀원들의 코딩 이야기</h3>
+            <h2 class="subtitle fs-6 p-2">PROJECT. 빨리 친해지길 바래</h2>
+        </div>
+    </header>
 
-        <article class="wrap">
-            <section class="flexbox container-fluid">
-                <p class="discript text-center fs-4 px-5">안녕하세요! 동물을 좋아하는 3팀입니다.</p>
+    <article class="wrap">
+        <section class="flexbox container-fluid">
+            <p class="discript text-center fs-4 px-5">안녕하세요! 동물을 좋아하는 3팀입니다.</p>
 
-                <article class="row px-3" id="mem">
-                    <h2 class="hidden">팀원 소개 링크</h2>
-                    <section class="col-sm-12 col-lg-6 my-3">
-                        <img src="../static/src/people2_icon.png" alt="이름아이콘">
-                        <h3 class="fs-2">소원</h3>
-                        <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
-                        <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
-                            title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+            <article class="row px-3" id="mem">
+                <h2 class="hidden">팀원 소개 링크</h2>
+                <!-- <section class="col-sm-12 col-lg-6 my-3">
+                    <img src="../static/src/people_icon.png" alt="이름아이콘">
+                    <h3 class="fs-2">소원</h3>
+                    <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
+                    <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
+                    title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+                </section>
+                <section class="col-sm-12 col-lg-6 my-3">
+                    <img src="../static/src/people_icon_2.png" alt="이름아이콘">
+                    <h3 class="fs-2">김나형</h3>
+                    <p class="fs-6 p-lg-3">팀원의 <br>소개 페이지<br>입니다.</p>
+                    <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
+                        title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+                </section>
+                <section class="col-sm-12 col-lg-6 my-3">
+                    <img src="../static/src/people_icon_3.png" alt="이름아이콘">
+                    <h3 class="fs-2">박해리</h3>
+                    <p class="fs-6 p-lg-3">팀원의 <br>소개 페이지<br>입니다.</p>
+                    <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
+                        title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+                </section>
+                <section class="col-sm-12 col-lg-6 my-3">
+                    <img src="../static/src/people_icon_4.png" alt="이름아이콘">
+                    <h3 class="fs-2">고푸름</h3>
+                    <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
+                    <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
+                        title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+                </section>
+                <section class="col-sm-12 col-lg-6 my-3">
+                    <img src="../static/src/people_icon_5.png" alt="이름아이콘">
+                    <h3 class="fs-2">오수정</h3>
+                    <p class="fs-6 p-lg-3">팀원의 <br>소개 페이지<br>입니다.</p>
+                    <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
+                        title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+                </section> -->
+            </article>
 
-                    </section>
-                    <section class="col-sm-12 col-lg-6 my-3">
-                        <img src="../static/src/people2_icon.png" alt="이름아이콘">
-                        <h3 class="fs-2">소원</h3>
-                        <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
-                        <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
-                            title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
+            <a href="http://127.0.0.1:5000/animal" target="_blank">
+                <button id="animal" class="btn btn-dark btn-animal text-center my-5 mx-5">좋아하는 동물 소개하기</button>
+            </a>
 
-                    </section>
-                    <section class="col-sm-12 col-lg-6 my-3">
-                        <img src="../static/src/people2_icon.png" alt="이름아이콘">
-                        <h3 class="fs-2">소원</h3>
-                        <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
-                        <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
-                            title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
-                    </section>
-                    <section class="col-sm-12 col-lg-6 my-3">
-                        <img src="../static/src/people2_icon.png" alt="이름아이콘">
-                        <h3 class="fs-2">소원</h3>
-                        <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
-                        <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
-                            title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
-                    </section>
-                    <section class="col-sm-12 col-lg-6 my-3">
-                        <img src="../static/src/people2_icon.png" alt="이름아이콘">
-                        <h3 class="fs-2">소원</h3>
-                        <p class="fs-6 p-lg-3">팀장의 <br>소개 페이지<br>입니다.</p>
-                        <a href="http://127.0.0.1:5000/member" target="_blank" class="intro_mem" alt="팀원소개 상세페이지"
-                            title="팀원소개 상세페이지 바로가기"><span class="hidden">팀장 소개 페이지로 이동</span></a>
-                    </section>
-                </article>
-                <a href="http://127.0.0.1:5000/ani" target="_blank">
-                    <button id="ani" class="btn btn-dark text-center my-5 mx-5">좋아하는 동물 소개하기</button>
-                </a>
-            </section>
-        </article>
-    </body>
+        </section>
+    </article>
 </body>
-
 </html>
