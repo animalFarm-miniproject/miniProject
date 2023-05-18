@@ -64,7 +64,7 @@ def remove_post():
     db.comment.delete_one({'_id':ObjectId(id_receive)})
     return jsonify({'msg':'삭제 완료!'})
 
-   @app.route('/animal')
+@app.route('/animal')
 def animal():
     return render_template('animal.html')
 
