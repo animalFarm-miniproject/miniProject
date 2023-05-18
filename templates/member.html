@@ -8,13 +8,13 @@
     <!-- ogtag -->
     <meta property="og:title" content="Team.동물농장" />
     <meta property="og:description" content="3팀 팀원소개" />
-    <meta property="og:image" content="https://img.freepik.com/free-vector/hand-drawn-farm-animal-collection_23-2148182663.jpg" />
+    <meta property="og:image" content="" />
     <!-- 미리보기 사진 뭐넣지 -->
     <title>Team.동물농장 | 멤버응원</title>
     <!-- 바로가기ico -->
-    <link rel="shortcut icon" href="/static/src/animalfootprint.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/src/animalfootprint.ico">
-    <link rel="icon" sizes="192x192" href="/static/src/animalfootprint.ico">
+    <link rel="shortcut icon" href="/static/src/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/src/teamwork_icon.ico">
+    <link rel="icon" sizes="192x192" href="/static/src/teamwork_icon.ico">
     <!-- jQuery v3.5.1-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- bootstrap@5.0.2 bundle -->
@@ -68,59 +68,61 @@
       </div>
   </header>
 
-  <article class="wrap container-fluid my-5">
-    <div class="card mb-3 border-0" style="min-width: 300px; width: 45%;">
+  <article class="container-fluid mt-5">
+    <div class="card mb-3 border-0 m_details">
       <div class="row g-0">
-        <div class="col-md-4">
-          <img src={{ns.image}} alt="이름아이콘" class="img-fluid">
-          <a href="http://127.0.0.1:5000/" type="button" class="btn btn-back" onclick="back()">뒤로</a>
+        <div class="col-md-6 ">
+          <img src={{ns.image}} alt="이름아이콘" class="img-fluid img-thumbnail m_image">
         </div>
-        <div class="col-md-8 text-center align-content-center">
+        <div class="col-md-6">
           <div class="card-body text-start">
             <h4 class="card-text float-end mbti">{{ns.mbti}}</h4>
-            <h3 class="card-title fs-5 py-2">{{ns.name}}</h3>
-            <h5 class="card-text fs-6  py-1">장점 : {{ns.strength}}</h5>
-            <h5 class="card-text fs-6  py-1">협업스타일 : {{ns.style}}</h5>
-            <h5 class="card-text fs-6  py-1">블로그 : {{ns.blog}}</h5>
+            <h3 class="card-title fs-4 pb-2">{{ns.name}}</h3>
+            <h5 class="card-text fs-6  pb-1">장점 : {{ns.strength}}</h5>
+            <h5 class="card-text fs-6  pb-1">협업스타일 : {{ns.style}}</h5>
+            <h5 class="card-text fs-6  pb-1">블로그 : <a href="{{ns.blog}}" target="_blank" title="블로그 바로가기">{{ns.blog}}</a></h5>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid py-5 d-flex text-center">
-
-      <div class="form-floating justify-content-center my-5">
-        <textarea class="form-control commentForm" placeholder="Leave a comment here"
-            id="floatingTextarea"></textarea>
-        <label for="floatingTextarea">응원한마디!</label>
-        <div class="mybtns my-3">
+    <div class="wrap mt-5">
+      <div class="cheerForm">
+        <div class="form-floating my-2">
+          <textarea class="form-control commentArea" placeholder="응원한마디!"
+          id="floatingTextarea"></textarea>
+          <label for="floatingTextarea">응원한마디!</label>
+        </div>
+    
+        <div class="mybtns">
             <a type="button" class="btn btn-dark btn-comment" onclick="register()">등 록</a>
         </div>
+      </div>
 
-      <div class="container-fluid py-3">
-        <div id="c" class="row py-3">
-          {% for i in comment %}
-              <div class="col-12 py-3">
-                <div class="card border-light cardComment py-2 px-3">
-                  <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                      <p class="text-start" id="{{i._id}}">{{i.comment}}</p>
-                      <footer class="blockquote-footer float-end"><cite title="Source Title"></cite></footer>
-                    </blockquote>
-                  </div>
-                  <div class="mybtns pb-3" id="btn{{i._id}}">
-                    <a type="button" class="btn btn-dark btn-sm" onclick="modify('{{i._id}}')">수정</a>
-                    <a type="button" class="btn btn-outline-secondary btn-sm" onclick="remove('{{i._id}}')">삭제</a>
+      <div class="container text-center replyForm">
+          <div id="c" class="row py-3">
+            {% for i in comment %}
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 py-3">
+                  <div class="card border-light cardComment py-2 px-3 h-100">
+                    <div class="card-body commentDetails">
+                      <p class="" id="{{i._id}}">{{i.comment}}</p>
+                    </div>
+                    <div class="mybtns pb-3" id="btn{{i._id}}">
+                      <a type="button" class="btn btn-dark btn-sm" onclick="modify('{{i._id}}')">수정</a>
+                      <a type="button" class="btn btn-outline-secondary btn-sm" onclick="remove('{{i._id}}')">삭제</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-          {% endfor %}
-        </div>
-
+            {% endfor %}
+          </div>
       </div>
-    </div>
-  </div>
 
+      <div class="back float-end">
+        <p class="backFloat">Back</p>
+        <a href="http://127.0.0.1:5000/" type="button" class="btn btn-back" onclick="back()"></a>
+      </div>
+      
+    </div>
   </article>  
 </body>
 

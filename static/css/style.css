@@ -1,6 +1,6 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Cairo:wght@600&display=swap');
-/* Main */
+/* Main & Common */
 :root {--bs-font-sans-serif:"Noto Sans KR";}
 *{margin:0 auto; padding:0;}
 .hidden {position:absolute; width:1px; height:1px; overflow:hidden; margin:-1px; border:0;}
@@ -29,6 +29,7 @@ header{width: 100%; height: 400px; text-align: center; padding-top: 70px; backgr
 .flexbox > article > section:hover > a{background:#FF7900 url('/static/src/btn_arrow.svg') no-repeat center; opacity:0.5; transition:0.3s;}
 .flexbox > article > section:hover > a:hover{box-shadow:0px 3px 10px rgba(239, 159, 48, 0.5); opacity:1; transition:0.3s}
 
+<<<<<<< HEAD
 /* '좋아하는 동물 소개하기' 버튼 수정 */
 .btn-animal {font-size: 20px;
     font-weight: bold;
@@ -43,14 +44,23 @@ header{width: 100%; height: 400px; text-align: center; padding-top: 70px; backgr
     transition: all 0.4s;}
 .btn-comment{width: 30%; min-width: 200px;}
 
+=======
+>>>>>>> kpr
 /* Page.Member */
-.btn-back{border:3px solid #ff77005a; border-radius: 40px; width: 58px; height: 58px; font-size: 0.85rem; font-weight: 700; position: relative; padding-top: 1rem;}
-#mem > div.card.mb-3.border-0 > div > div.col-md-4 > a{box-shadow:0px 3px 10px rgba(239, 159, 48, 0.5); opacity:1; transition:0.3s}
-#mem > div.card.mb-3.border-0 > div > div.col-md-4 > a:hover{background:#FF7900 url('../src/arrow_back_icon.svg') no-repeat center; opacity:0.5; transition:0.3s;}
-.mbti{font-size: 5rem; position: absolute; padding-left: 180px; margin-top: -52px; color: rgba(0,0,0,.125);}
+.back{position: relative; margin: 0 100px 50px 0;}
+.backFloat{margin: 0;}
+.btn-back{border-radius: 40px; width: 60px; height: 60px; background-color:#FFDC3A; box-shadow:0px 3px 20px rgba(239, 159, 48, 0.5); opacity:1; transition:0.3s; font-size:5px; margin: 0 20px;} 
+.btn-back:hover{background: #fff url('../src/arrow_back_icon.svg') no-repeat center; transition:0.3s;}
 
-.commentForm, .btn-comment{min-width: 250px; width: 100%; font-size: 1rem; font-weight: 700;}
-.cardComment{box-shadow:0px 3px 10px rgba(0, 0, 0, 0.265); opacity:1; transition:0.3s}
+.m_image{min-height: 150px;}
+.m_details{min-width: 300px; width: 45%; min-height: 200px;}
+.mbti{font-size: 4rem; position: absolute; padding-left: 140px; margin-top: -25px; color: rgba(0,0,0,.125);}
+
+.cheerForm {min-width: 250px; width: 45%; font-size: 1rem;}
+.commentArea{ height: 150px !important;}
+.replyForm{width: 55%; min-width: 200px;}
+.btn-comment{width: 100%; min-width: 200px;}
+.cardComment{box-shadow:0px 3px 10px rgba(0, 0, 0, 0.265); opacity:1; transition:0.3s; overflow-y: scroll; max-height: 200px;}
 
 /* Page.Animal */
 .mybg {width: 100vw;height: 150%;background-image: linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("https://images.unsplash.com/photo-1511208687438-2c5a5abb810c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8JUVDJTk1JUJDJUVDJTgzJTlEfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60");background-position: center;background-size: cover;display: flex;position: absolute; flex-direction: column;align-items: center;justify-content: center;}
@@ -68,7 +78,11 @@ header{width: 100%; height: 400px; text-align: center; padding-top: 70px; backgr
 .card-text {min-width: 60%;}
 
 /* '좋아하는 동물 소개하기' 버튼 수정 */
+<<<<<<< HEAD
 .btn {font-size: 20px;
+=======
+.btnAnimal {font-size: 20px;
+>>>>>>> kpr
     font-weight: bold;
     padding: 10px 30px;
     background-color: white;
@@ -79,6 +93,11 @@ header{width: 100%; height: 400px; text-align: center; padding-top: 70px; backgr
     letter-spacing: 0px;
     font-family: sans-serif;
     transition: all 0.4s;}
+<<<<<<< HEAD
 .btn:focus {outline: none;}
 .btn:hover {background-color: black; color: white;}
+=======
+.btnAnimal:focus {outline: none;}
+.btnAnimal:hover {background-color: black; color: white;}
+>>>>>>> kpr
         
