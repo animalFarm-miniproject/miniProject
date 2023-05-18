@@ -65,5 +65,41 @@ def remove_post():
     db.comment.delete_one({'_id':ObjectId(id_receive)})
     return jsonify({'msg':'삭제 완료!'})
 
+@app.route('/animal')
+def animal():
+    return render_template('animal.html')
+
+@app.route('/posting', methods=['POST'])
+def posting():
+    user_receive = request.form["user_give"]
+    animal_receive = request.form["animal_give"]
+    comment_receive = request.form["comment_give"]
+    file = request.files["file_give"]
+    # static 폴더에 저장될 파일 이름 생성하기
+    today = datetime.now()
+    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    filename = f'file-{mytime}'
+    # 확장자 나누기
+    extension = file.filename.split('.')[-1]
+    # static 폴더에 저장
+    save_to = f'static/{filename}.{extension}'
+    file.save(save_to)
+
+    # DB에 저장
+    doc = {
+        'user': user_receive,
+        'animal': animal_receive,
+        'comment': comment_receive,
+        'file': f'{filename}.{extension}'
+    }
+    db.image.insert_one(doc)
+    return jsonify({'msg': '업로드 완료!'})
+
+# 서버에서 이미지 정보 가져오기
+@app.route('/listing', methods=['GET'])
+def listing():
+    images = list(db.image.find({}, {'_id': False}))
+    return jsonify({'result': 'success', 'images': images})
+   
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
