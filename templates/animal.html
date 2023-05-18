@@ -1,137 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ogtag -->
-    <meta property="og:title" content="Team.동물농장" />
-    <meta property="og:description" content="3팀 팀원소개" />
-    <meta property="og:image" content="https://img.freepik.com/free-vector/hand-drawn-farm-animal-collection_23-2148182663.jpg" />
-    <!-- 미리보기 사진 뭐넣지 -->
-    <title>Team.동물농장 | 동물소개</title>
-    <!-- 바로가기ico -->
-    <link rel="shortcut icon" href="/static/src/animalfootprint.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/src/animalfootprintn.ico">
-    <link rel="icon" sizes="192x192" href="/static/src/animalfootprint.ico">
-    <!-- bootstrap@5.0.2 bundle -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <!-- CSS -->
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    <!-- JS -->
-    <script src="{{ url_for('static', filename='js/animal.js') }}" > </script>
-  </head>
-  
-  <body>
-    <!-- 배경적용 -->
-    <div class="mybg"></div>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-transparent">
-      <div class="container-fluid">
-          <div class="teamLogo align-content-center mx-3">
-            <a href="http://127.0.0.1:5000" title="Home">
-              <img src="../static/src/logo.png" alt="teamLogo" title="3팀로고" style="width:35px;">
-              MiniProject02
-            </a>
-          </div>
-          <button class="navbar-toggler text-end border-0" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse text-center" id="navbarNav">
-              <ul class="navbar-nav">
-                  <li class="nav-item px-5 ">
-                      <a class="nav-link" target="_blank"
-                          href="https://github.com/animalFarm-miniproject/miniProject">GitHub</a>
-                  </li>
-                  <li class="nav-item px-5">
-                      <a class="nav-link" href="http://127.0.0.1:5000/animal">Board</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-    </nav>
 
-    <div class="mytitle">
-      <p class="temp">현재 기온: <span id="temp">36</span>℃</p>
-      <h1 class="my-5">좋아하는 동물을 소개해주세요!</h1>
+    <title>동물추천</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .wrap {
+            margin: auto;
+            width: 900px;
+        }
+
+        .title {
+            background-color: gainsboro;
+            padding: 20px 30px;
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        .posting-box {
+            margin: 10px auto 30px auto;
+            width: 500px;
+            border: 3px solid black;
+            border-radius: 5px;
+            padding: 25px;
+        }
+
+        .mypic {
+            width: 100%;
+            height: 500px;
+
+            background-image: linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)),
+                url("https://t3.ftcdn.net/jpg/02/69/46/64/240_F_269466462_TSTNamqXizg1r85NWdwpWmzfxV5tRaZl.jpg");
+            background-position: center 30%;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro {
+            color: red;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            listing();
+        })
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/listing",
+                data: {},
+                success: function (response) {
+                    console.log(response["result"])
+                    if (response["result"] == "success") {
+                        let images = response['images']
+                        for (let i = 0; i < images.length; i++) {
+                            let user = images[i]['user']
+                            let animal = images[i]['animal']
+                            let comment = images[i]['comment']
+                            let file = images[i]['file']
+                            let date = file.substr(5, 13)
+                            console.log(file)
+                            let temp_html =
+                                `<div class="col">
+                                    <div class="card h-100">
+                                        <img src="../static/${file}" class="card-img-top" style="max-height: 300px">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${user}</h5>
+                                            <h5 class="card-title">${animal}</h5>
+                                            <p class="card-text">${comment}</p>
+                                    </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">${date}</small>
+                                        </div>
+                                    </div>
+                                </div>`
+
+                            $('#cards-box').append(temp_html)
+                        }
+                    }
+                }
+            });
+        }
+
+        // 서버에 이미지 정보 올리기
+        function posting() {
+            let user = $('#img-user').val()
+            let animal = $('#img-animal').val()
+            let comment = $("#img-comment").val()
+            let file = $('#img-file')[0].files[0]
+            let form_data = new FormData()
+
+            form_data.append("file_give", file)
+            form_data.append("user_give", user)
+            form_data.append("animal_give", animal)
+            form_data.append("comment_give", comment)
+
+            $.ajax({
+                type: "POST",
+                url: "/posting",
+                // form data 형식으로 파일 데이터 보내기
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+       
+
+    </script>
+</head>
+
+<body>
+    <div class="mypic">
+        <h1>좋아하는 동물을 소개해주세요!</h1>
+    </div>
+    <div class="wrap">
+        <hr class="my-4">
+        <div class="posting-box" id="post-box">
+            <!--이미지 업로더-->
+
+            <div class="custom-file">
+                <label class="intro">👇동물 사진 파일을 아래에 업로드 해주세요!👇 </label>
+                <p></p>
+                <input type="file" class="custom-file-input" id="img-file">
+                <label class="custom-file-label" for="img-file">Choose file</label>
+            </div>
+            <!--이미지 제목 및 코멘트-->
+            <div class="form-group">
+                <label>닉네임</label>
+                <input type="email" class="form-control" aria-describedby="emailHelp" id="img-user" placeholder="">
+            </div>
+            <div class="form-group">
+                <label>동물이름</label>
+                <input type="email" class="form-control" id="img-animal" placeholder="">
+            </div>
+            <div class="form-group">
+                <label>이 동물을 추천하는 이유</label>
+                <input type="email" class="form-control" id="img-comment" placeholder="">
+            </div>
+            <button type="submit" onclick="posting()" class="btn btn-primary">업로드하기</button>
+         
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="cards-box">
+
     </div>
 
-    <div class="mypost">
-      <div class="form-floating my-3">
-        <input type="text" class="form-control" id="name" placeholder="url" />
-        <label for="floatingInput">동물이름</label>
-      </div>
-      <div class="form-floating my-3">
-        <textarea class="form-control" placeholder="Leave a comment here" id="url"></textarea>
-        <label for="floatingTextarea2">동물사진 URL</label>
-      </div>
-      <div class="form-floating my-3">
-        <textarea class="form-control" placeholder="Leave a comment here" id="comment" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">동물소개 작성</label>
-      </div>
-      <button onclick="save_comment()" type="button" class="btn btn-secondary float-end">
-        등록
-      </button>
     </div>
-
-    <div class="container-fluid">
-      <div class="mycards" id="comment-list">
-        
-        <div class="card card-comment">
-          <div class="card-body">
-            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80" class="img-thumbnail img-fluid w-25 float-start mx-3" alt="...">
-            <blockquote class="blockquote mb-0">
-              <p class="card-text text-start comment">새로운 앨범 너무 멋져요!</p>
-              <footer class="blockquote-footer float-end px-3">호빵맨</footer>
-            </blockquote>
-          </div>
-        </div>
-        <div class="card card-comment">
-          <div class="card-body">
-            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80" class="img-thumbnail img-fluid w-25 float-start mx-3" alt="...">
-            <blockquote class="blockquote mb-0">
-              <p class="card-text text-start comment">새로운 앨범 너무 멋져요!</p>
-              <footer class="blockquote-footer float-end px-3">호빵맨</footer>
-            </blockquote>
-          </div>
-        </div>
-        <div class="card card-comment">
-          <div class="card-body">
-            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80" class="img-thumbnail img-fluid w-25 float-start mx-3" alt="...">
-            <blockquote class="blockquote mb-0">
-              <p class="card-text text-start comment">새로운 앨범 너무 멋져요!</p>
-              <footer class="blockquote-footer float-end px-3">호빵맨</footer>
-            </blockquote>
-          </div>
-        </div>
-        <div class="card card-comment">
-          <div class="card-body">
-            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80" class="img-thumbnail img-fluid w-25 float-start mx-3" alt="...">
-            <blockquote class="blockquote mb-0">
-              <p class="card-text text-start comment">새로운 앨범 너무 멋져요!</p>
-              <footer class="blockquote-footer float-end px-3">호빵맨</footer>
-            </blockquote>
-          </div>
-        </div>
-        <div class="card card-comment">
-          <div class="card-body">
-            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80" class="img-thumbnail img-fluid w-25 float-start mx-3" alt="...">
-            <blockquote class="blockquote mb-0">
-              <p class="card-text text-start comment">새로운 앨범 너무 멋져요!</p>
-              <footer class="blockquote-footer float-end px-3">호빵맨</footer>
-            </blockquote>
-          </div>
-        </div>
-        
-        
-      </div>
-    </div>
-
 </body>
+
 </html>
