@@ -4,20 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <title>Team.동물농장 | 동물추천</title>
+    <!-- 바로가기ico -->
+    <link rel="shortcut icon" href="/static/src/animalfootprint.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/src/animalfootprint.ico">
+    <link rel="icon" sizes="192x192" href="/static/src/animalfootprint.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
-    <title>동물추천</title>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-      <!-- 바로가기ico -->
-    <link rel="shortcut icon" href="/static/src/animalfootprint.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/src/animalfootprint.ico">
-    <link rel="icon" sizes="192x192" href="/static/src/animalfootprint.ico">
     <style>
         * {
             font-family: 'Jua', sans-serif;
@@ -53,10 +51,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            .line {
-                background-color: #000;
-                padding: 2px;
-                width: 500px;
+        }
+        .line{ 
+            background-color: #000;
+            padding: 2px;
+            width: 500px;
         }
 
         .intro {
@@ -134,23 +133,43 @@
                 }
             });
         }
-       
-
     </script>
 </head>
 
 <body>
+    <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="teamLogo align-content-center mx-3">
+              <a href="http://127.0.0.1:5000" title="Home">
+                <img src="../static/src/logo.png" alt="teamLogo" title="3팀로고" style="width:35px;">
+                MiniProject01
+              </a>
+            </div>
+            <button class="navbar-toggler text-end border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item px-5 ">
+                        <a class="nav-link" target="_blank"
+                            href="https://github.com/animalFarm-miniproject/miniProject">GitHub</a>
+                    </li>
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="http://127.0.0.1:5000/animal">Board</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
     <div class="mypic">
-        <p></p>
-        <P2></P2>
-        <h1 class="fs-1 fw-bold pb-1">좋아하는 동물을 소개해주세요!<br></h1>
-        <hr class="line rounded">
+        <h1>좋아하는 동물을 소개해주세요!</h1>
     </div>
-    <div class="wrap">
+    <div class="container mb-5">
         <hr class="my-4">
         <div class="posting-box" id="post-box">
             <!--이미지 업로더-->
-
             <div class="custom-file">
                 <label class="intro">👇 동물 사진 파일을 아래에 업로드 해주세요!👇 </label> 
                 <p></p>
@@ -172,14 +191,9 @@
                 <input type="email" class="form-control" id="img-comment" placeholder="">
             </div>
             <button type="submit" onclick="posting()" class="btn btn-primary">업로드하기</button>
-         
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="cards-box">
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4" id="cards-box">
-
-    </div>
-
-    </div>
 </body>
-
 </html>
